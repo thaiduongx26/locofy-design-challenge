@@ -111,13 +111,14 @@ flex-wrap: wrap;
 
 ### Proposal models
 #### Image-based
-- We simply use a detection model like Yolo or Detectron to predict the layer that needs to convert to responsive.
-- Because the output of the model is the bounding box of the object so we need a way to mapping the output to the correct layers. 
+- We simply use an object detection model like Yolo or Detectron to predict the group of objects that needs to convert to responsive.
+- Because the output of the model is the bounding box of the object so we need a way to mapping the output to the correct elements. 
 <img src="https://github.com/thaiduongx26/locofy-design-challenge/blob/main/images/image-based-model.png">
 
 #### Layer-based
 - Basically, a responsive layer always contains some child frame. So we can use the child's information to predict the class of the parent frame is responsive or not.
 - Some information that we can use like: bounding box (x1,x2,y1,y2), image (crop based on bbox), and content (I assume that can be text).
+- <b> Normally, the data is a mess, it doesn't pretty like that. So I think we need to apply the object detection model to predict the group of elements in the design as the input of this model. </b>
 - We use a Transformers encoder model and a classification head.
 <img src="https://github.com/thaiduongx26/locofy-design-challenge/blob/main/images/layer-based-model.png" width=80% height=80%>
 
